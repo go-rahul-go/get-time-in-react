@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import TimeCard from './TimeCard';
+import "./style.css"
 
 function App() {
+  let time = new Date().toLocaleTimeString();
+  const [currentTime, updateTime] = useState(time)
+
+
+  const getTime = () => {
+    time = new Date().toLocaleTimeString();
+    updateTime(time)
+    console.log(time)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <TimeCard
+        time={currentTime} />
+
+      <button onClick={getTime}>TIME</button>
     </div>
-  );
+  )
 }
 
 export default App;
